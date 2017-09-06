@@ -2,7 +2,7 @@
 
 namespace Baueri\LorumIpse;
 
-class LorumIpse
+class LorumIpseFaker
 {
     
 }
