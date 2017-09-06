@@ -49,11 +49,11 @@ To install, you have to add the following lines to the composer
 
 ```json
 "repositories": [
-        {
-            "url": "https://baueri@bitbucket.org/baueri/lorum-ipse-faker.git",
-            "type": "git"
-        }
-    ],
+    {
+        "url": "https://baueri@bitbucket.org/baueri/lorum-ipse-faker.git",
+        "type": "git"
+    }
+],
 "require": {
    "baueri/lorum-ipse-faker": "dev-master"
 }
