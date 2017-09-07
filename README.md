@@ -1,7 +1,12 @@
-LÃ³rum Ipse fake text generator
+Lórum Ipse fake text generator
 ====================
 
 **With this package you can generate random sentences and paragraphs with made up Hungarian-like words.**
+
+This package uses the api of http://www.lorumipse.hu/ website. The text generating algorithm is developed by the Lórum Ipse team.
+The package only gets the generated text from the api url and parses it by the needs.
+
+Please note that because of calling an external api url, getting a random text might take a longer time.
 
 ### Docs
 
@@ -48,14 +53,16 @@ When instantiating the faker, it already gives you a paragraph, a sentence and a
 To install, you have to add the following lines to the composer
 
 ```json
-"repositories": [
+{
+  "repositories": [
     {
         "url": "https://baueri@bitbucket.org/baueri/lorum-ipse-faker.git",
         "type": "git"
     }
-],
-"require": {
-   "baueri/lorum-ipse-faker": "dev-master"
+  ],
+  "require": {
+       "baueri/lorum-ipse-faker": "dev-master"
+    }
 }
 ```
 
