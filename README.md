@@ -6,7 +6,7 @@ Lórum Ipse fake text generator
 This package uses the api of http://www.lorumipse.hu/ website. The text generating algorithm is developed by the Lórum Ipse team.
 The package only gets the generated text from the api url and parses it by the needs.
 
-Please note that because of calling an external api url, getting a random text might take a longer time.
+Please note that because of calling an external api url, getting a random text using this package might take a longer time.
 
 ### Docs
 
@@ -18,7 +18,7 @@ Please note that because of calling an external api url, getting a random text m
 When instantiating the faker, it already gives you a paragraph, a sentence and a single word, but you can generate a new one by calling them as methods (see below)
 
 ```php
-  <?php $faker = Baueri\LorumIpse\LorumIpseFaker::make();
+  $faker = Baueri\LorumIpse\LorumIpseFaker::make();
 ```
 
 **Getting a paragraph**
