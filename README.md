@@ -1,9 +1,9 @@
-Lórum Ipse fake text generator
+LÃ³rum Ipse fake text generator
 ====================
 
 **With this package you can generate random sentences and paragraphs with made up Hungarian-like words.**
 
-This package uses the api of http://www.lorumipse.hu/ website. The text generating algorithm is developed by the Lórum Ipse team.
+This package uses the api of http://www.lorumipse.hu/ website. The text generating algorithm is developed by the LÃ³rum Ipse team.
 The package only gets the generated text from the api url and parses it by the needs.
 
 Please note that because of calling an external api url, getting a random text might take a longer time.
@@ -18,7 +18,7 @@ Please note that because of calling an external api url, getting a random text m
 When instantiating the faker, it already gives you a paragraph, a sentence and a single word, but you can generate a new one by calling them as methods (see below)
 
 ```php
-  $faker = Baueri\LorumIpse\LorumIpseFaker::make();
+  <?php $faker = Baueri\LorumIpse\LorumIpseFaker::make();
 ```
 
 **Getting a paragraph**
