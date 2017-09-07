@@ -2,11 +2,11 @@
     "name": "baueri/lorum-ipse-faker",
     "description": "Hungarian lorem ipsum paragraph faker",
     "license": "MIT",
-    "version": "master",
     "type": "library",
     "autoload": {
         "psr-4": {
             "Baueri\\LorumIpse\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
