@@ -78,6 +78,15 @@ class LorumIpseFaker
         return $paragraph;
     }
 
+    public function paragraphs($paragraphs = 1) {
+        $text = '';
+        for($i = 0; $i < $paragraphs; $i++) {
+            $text .= $this->paragraph();
+        }
+
+        return $text;
+    }
+
     private function get()
     {
         $data = file_get_contents($this->apiUrl);
