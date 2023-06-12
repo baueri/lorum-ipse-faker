@@ -37,7 +37,7 @@ class LorumIpseFaker
 
     public function word()
     {
-        $sentence = $this->get()->first();
+        $sentence = $this->get()[0] ?? [];
         foreach($sentence as $word) {
             if($word[2] !== static::ART) {
                 return lcfirst($word[0]);
@@ -45,22 +45,24 @@ class LorumIpseFaker
         }
     }
 
-    public function sentence(int $length = null)
+    public function sentence(int $words = null)
     {
-       $sentenceArray = $this->get()->first();
+       $sentenceArray = $this->get()[0];
        $sentence = '';
-       if($length === null || $length > count($sentenceArray)) {
-           $length = count($sentenceArray);
+       if($words === null || $words > count($sentenceArray)) {
+           $words = count($sentenceArray);
        }
-       for($i = $length; $i > 0; $i--) {
+       for($i = 0; $i <= $words-1; $i++) {
            if(isset($sentenceArray[$i])) {
-            $word = $sentenceArray[$i];
-            if($word[2] !== static::PUNCT || ($word[0] == ',' || $word[0] == '.')) {
-                $sentence .= $word[0] . ' ';
-            }
+                $word = $sentenceArray[$i];
+                $next = isset($sentenceArray[$i+1]) ? $sentenceArray[$i+1] : null;
+                $sentence .= $word[0];
+                if($next && $next[2] !== static::PUNCT) {
+                    $sentence .= ' ';
+                }
             }
        }
-       return rtrim($sentence, ' ');
+       return rtrim($sentence, ' .:') . '.';
     }
 
     public function paragraph($sentences = 7)
@@ -68,14 +70,18 @@ class LorumIpseFaker
         if($sentences > 7) {
             $sentences = 7;
         }
-        $data = $this->get();
 
-        $paragraph =  $data->reduce(function($accumulator, $sentence){
-            $accumulator .= $this->toSentence($sentence);
-            return $accumulator;
-        }, '');
-        
-        return $paragraph;
+        $paragraph = '';
+
+        foreach ($this->get() as $sentence) {
+            $sentences--;
+            $paragraph .= $this->toSentence($sentence) . ' ';
+            if ($sentences === 0) {
+                return $paragraph;
+            }
+        }
+
+        return trim($paragraph);
     }
 
     public function paragraphs($paragraphs = 1) {
@@ -90,14 +96,24 @@ class LorumIpseFaker
     private function get()
     {
         $data = file_get_contents($this->apiUrl);
-        return collect(json_decode($data));
+        return json_decode($data);
     }
 
     private function toSentence(array $words)
     {
-        return collect($words)->reduce(function($sentence, $word){
-            $sentence .= ($word[3] == 'left' ? '' : ' ') . $word[0];
-            return $sentence;
-        }, '');
+        $sentence = '';
+
+
+        foreach($words as $i => $word) {
+            if(isset($words[$i])) {
+                $word = $words[$i];
+                $next = isset($words[$i+1]) ? $words[$i+1] : null;
+                $sentence .= $word[0];
+                if($next && $next[2] !== static::PUNCT) {
+                    $sentence .= ' ';
+                }
+            }
+       }
+       return rtrim($sentence, ' ');
     }
 }
